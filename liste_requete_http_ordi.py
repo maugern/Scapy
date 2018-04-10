@@ -5,9 +5,6 @@ def traitementPaquet(pkt):
 	print pkt[Raw]
 
 def filtreHttp(pkt):
-	if pkt.haslayer(TCP) and pkt[TCP].dport == 80 and pkt.haslayer(Raw):
-		return True
-	else:
-		return False
-
+	return pkt.haslayer(TCP) and pkt[TCP].dport == 80 and pkt.haslayer(Raw)
+		
 sniff(prn=traitementPaquet, lfilter=filtreHttp)
